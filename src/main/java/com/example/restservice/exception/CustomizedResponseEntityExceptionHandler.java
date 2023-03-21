@@ -1,5 +1,6 @@
 package com.example.restservice.exception;
 
+import com.example.restservice.user.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -28,5 +29,18 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
                 );
 
         return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR); // INTERNAL_SERVER_ERROR : 500 error
+    }
+
+    // UserNotFoundException.class => handleUserNotFoundException()
+    @ExceptionHandler(UserNotFoundException.class)
+    public final ResponseEntity handleUserNotFoundException(Exception ex, WebRequest request) {
+        ExceptionResponse exceptionResponse =
+                new ExceptionResponse(
+                        new Date(),
+                        ex.getMessage(),
+                        request.getDescription(false)
+                );
+
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
     }
 }
