@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class UserController {
      * */
     @PostMapping("") // (POST) localhost:8080/users
     // json을 User 객체로 변환해줄 수 있는 것 이 필요하기 때문에 @RequestBody를 써야한다.
-    public ResponseEntity createUser(@RequestBody User user) {
+    public ResponseEntity createUser(@Valid @RequestBody User user) { // @Valid 유효성 검사 이루어진다.
         User savedUser = service.save(user);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
