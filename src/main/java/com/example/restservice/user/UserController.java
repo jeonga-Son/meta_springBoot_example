@@ -30,6 +30,7 @@ public class UserController {
      * @return User
      * */
     @PostMapping("") // (POST) localhost:8080/users
+    // json을 User 객체로 변환해줄 수 있는 것 이 필요하기 때문에 @RequestBody를 써야한다.
     public User createUser(@RequestBody User user) {
         return service.save(user);
     }
@@ -50,7 +51,7 @@ public class UserController {
      * @return User
      * */
 //    @DeleteMapping("/{id}")  // (DELETE) localhost:8080/users/:id
-//    public String deleteUser() { // (POST) localhost:8080/users
+//    public String deleteUser() {
 //        return "delete User";
 //    }
 
@@ -59,7 +60,7 @@ public class UserController {
      * [GET] /users/:id
      * @return User
      * */
-//    @GetMapping("/{id}/posts")  // (GET) localhost:8080/users/:id
+//    @GetMapping("/{id}/posts")  // (GET) localhost:8080/users/:id/posts
 //    public String retrieveAllPostsForUser() {
 //        return "show User Posts";
 //    }
@@ -69,7 +70,7 @@ public class UserController {
      * [POST] /users/:id/posts
      * @return User
      * */
-//    @Post("/{id}/posts")  // (GET) localhost:8080/users/:id/posts
+//    @Post("/{id}/posts")  // (POST) localhost:8080/users/:id/posts
 //    public String createPostsForUser() {
 //        return "create User Posts";
 //    }
@@ -83,5 +84,4 @@ public class UserController {
 //    public String retrieveDetailsUser() {
 //
 //    }
-
 }

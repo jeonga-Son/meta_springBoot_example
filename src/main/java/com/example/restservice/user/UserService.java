@@ -35,9 +35,9 @@ public class UserService {
     }
 
     public User save(User user) {
-
-        userCount++;
-        user.setId(userCount);
+        if(user.getId() == null) {
+            user.setId(++userCount);
+        }
         users.add(user);
 
         return user;
