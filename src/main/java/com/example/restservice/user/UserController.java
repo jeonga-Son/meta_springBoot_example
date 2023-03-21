@@ -55,7 +55,7 @@ public class UserController {
         User user = service.findOne(id);
 
         if(user == null) {
-            throw new UserNotFoundException(String.format("ID[%s] not fount", id));
+            throw new UserNotFoundException(String.format("ID[%s] not found", id));
         }
         return user;
     }
