@@ -24,37 +24,62 @@ public class UserController {
         return service.findAll();
     }
 
-//    @PostMapping("")
-//    public String createUser() {
-//        return "create User";
-//    }
+    /**
+     * 유저 생성 API
+     * [POST] /users
+     * @return User
+     * */
+    @PostMapping("") // (POST) localhost:8080/users
+    public User createUser(@RequestBody User user) {
+        return service.save(user);
+    }
 
     /**
      * 유저 조회 API
      * [GET] /users/:id
      * @return User
      * */
-    @GetMapping("/{id}")    // (GET) localhost:8080/users/:id
+    @GetMapping("/{id}")  // (GET) localhost:8080/users/:id
     public User retrieveOneUser(@PathVariable int id) {
         return service.findOne(id);
     }
 
-//    @DeleteMapping("/{id}")
-//    public String deleteUser() {
+    /**
+     * 유저 삭제 API
+     * [GET] /users/:id
+     * @return User
+     * */
+//    @DeleteMapping("/{id}")  // (DELETE) localhost:8080/users/:id
+//    public String deleteUser() { // (POST) localhost:8080/users
 //        return "delete User";
 //    }
-//
-//    @GetMapping("/{id}/posts")
+
+    /**
+     * 유저 게시글 조회 API
+     * [GET] /users/:id
+     * @return User
+     * */
+//    @GetMapping("/{id}/posts")  // (GET) localhost:8080/users/:id
 //    public String retrieveAllPostsForUser() {
 //        return "show User Posts";
 //    }
-//
-//    @Post("/{id}/posts")
+
+    /**
+     * 유저 게시글 생성 API
+     * [POST] /users/:id/posts
+     * @return User
+     * */
+//    @Post("/{id}/posts")  // (GET) localhost:8080/users/:id/posts
 //    public String createPostsForUser() {
 //        return "create User Posts";
 //    }
 
-//    @GetMapping("{id}/posts/{post_id}")
+    /**
+     * 유저가 게시글 상세 조회 API
+     * [GET] /users/:id/posts/:post_id
+     * @return User
+     * */
+//    @GetMapping("{id}/posts/{post_id}")  // (GET) localhost:8080/users/:id/posts/:post_id"
 //    public String retrieveDetailsUser() {
 //
 //    }

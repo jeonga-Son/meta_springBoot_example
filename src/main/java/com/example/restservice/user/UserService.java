@@ -33,4 +33,13 @@ public class UserService {
         }
         return null;
     }
+
+    public User save(User user) {
+
+        userCount++;
+        user.setId(userCount);
+        users.add(user);
+
+        return user;
+    }
 }
