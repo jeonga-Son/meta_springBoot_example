@@ -47,6 +47,7 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     }
 
     @Override
+    // 유효성 검사에서 실패했을 때 handleMethodArgumentNotValid 메소드가 실행된다.ㄲ
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
                                                                   HttpHeaders headers,
                                                                   HttpStatus status,

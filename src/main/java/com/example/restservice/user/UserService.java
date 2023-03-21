@@ -14,10 +14,11 @@ public class UserService {
 
     private static int userCount = 3;
 
+    // user 객체 생성
     static {
-        users.add(new User(1, "kosa", new Date()));
-        users.add(new User(2, "meta", new Date()));
-        users.add(new User(3, "naver", new Date()));
+        users.add(new User(1, "kosa", new Date(), "pass1", "990909-111111"));
+        users.add(new User(2, "meta", new Date(), "pass2", "890909-111111"));
+        users.add(new User(3, "naver", new Date(), "pass3", "790909-111111"));
     }
 
     public List<User> findAll() {
