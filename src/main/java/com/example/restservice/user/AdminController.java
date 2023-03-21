@@ -1,7 +1,11 @@
 package com.example.restservice.user;
 
 import com.example.restservice.user.model.User;
+import com.fasterxml.jackson.databind.ser.FilterProvider;
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -9,12 +13,12 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
-@RestController // @ResponseBody + @RequestController
-@RequestMapping("/users")
-public class UserController {
+@RestController
+@RequestMapping("/admin")
+public class AdminController {
     private UserService service;
 
-    public UserController(UserService service) {
+    public AdminController(UserService service) {
         this.service = service;
     }
 
@@ -24,8 +28,18 @@ public class UserController {
      * @return List<User>
      * */
     @GetMapping("") // (GET) localhost:8080/users
-    public List<User> retrieveAllUsers() {
-        return service.findAll();
+    public MappingJacksonValue retrieveAllUsers() {
+        List<User> users = service.findAll();
+
+        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter
+                .filterOutAllExcept("id", "name", "joinDate", "ssn", "password"); // 출력하고 싶은 것들을 필터링을 적용한다.
+
+        FilterProvider filters = new SimpleFilterProvider().addFilter("UserInfo", filter); // @JsonFilter("UserInfo")
+
+        MappingJacksonValue mapping = new MappingJacksonValue(users); // 매핑시켜준다.
+        mapping.setFilters(filters);
+
+        return mapping;
     }
 
     /**
@@ -52,13 +66,22 @@ public class UserController {
      * @return User
      * */
     @GetMapping("/{id}")  // (GET) localhost:8080/users/:id
-    public User retrieveOneUser(@PathVariable int id) {
+    public MappingJacksonValue retrieveOneUser(@PathVariable int id) { // MappingJacksonValue 안에 필터링된 User 객체가 들어가있다.
         User user = service.findOne(id);
 
         if(user == null) {
             throw new UserNotFoundException(String.format("ID[%s] not found", id));
         }
-        return user;
+
+        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter
+                .filterOutAllExcept("id", "name", "joinDate", "ssn"); // 출력하고 싶은 것들을 필터링을 적용한다.
+
+        FilterProvider filters = new SimpleFilterProvider().addFilter("UserInfo", filter); // @JsonFilter("UserInfo")
+
+        MappingJacksonValue mapping = new MappingJacksonValue(user); // 매핑시켜준다.
+        mapping.setFilters(filters);
+
+        return mapping;
     }
 
     /**
@@ -73,34 +96,4 @@ public class UserController {
             throw new UserNotFoundException(String.format("ID[%s] not found", id));
         }
     }
-
-    /**
-     * 유저 게시글 조회 API
-     * [GET] /users/:id
-     * @return User
-     * */
-//    @GetMapping("/{id}/posts")  // (GET) localhost:8080/users/:id/posts
-//    public String retrieveAllPostsForUser() {
-//        return "show User Posts";
-//    }
-
-    /**
-     * 유저 게시글 생성 API
-     * [POST] /users/:id/posts
-     * @return User
-     * */
-//    @Post("/{id}/posts")  // (POST) localhost:8080/users/:id/posts
-//    public String createPostsForUser() {
-//        return "create User Posts";
-//    }
-
-    /**
-     * 유저가 게시글 상세 조회 API
-     * [GET] /users/:id/posts/:post_id
-     * @return User
-     * */
-//    @GetMapping("{id}/posts/{post_id}")  // (GET) localhost:8080/users/:id/posts/:post_id"
-//    public String retrieveDetailsUser() {
-//
-//    }
 }
