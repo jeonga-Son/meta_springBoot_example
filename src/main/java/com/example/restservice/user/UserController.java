@@ -65,10 +65,14 @@ public class UserController {
      * [GET] /users/:id
      * @return User
      * */
-//    @DeleteMapping("/{id}")  // (DELETE) localhost:8080/users/:id
-//    public String deleteUser() {
-//        return "delete User";
-//    }
+    @DeleteMapping("/{id}")  // (DELETE) localhost:8080/users/:id
+    public void deleteUser(@PathVariable int id) {
+        User user = service.deleteById(id);
+
+        if(user == null) {
+            throw new UserNotFoundException(String.format("ID[%s] not found", id));
+        }
+    }
 
     /**
      * 유저 게시글 조회 API
