@@ -12,7 +12,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 //@JsonIgnoreProperties(value = {"password", "ssn"})
-@JsonFilter("UserInfo") // controller에 따라서 권한이 다르기 때문에 각각 설정해주기 위한 작업
+//@JsonFilter("UserInfo") // controller에 따라서 권한이 다르기 때문에 각각 설정해주기 위한 작업
 public class User {
     private Integer id;
     @Size(min = 2, message = "Name은 2글자 이상 입력하세요.")
