@@ -1,8 +1,11 @@
 package com.example.restservice.user;
 
 import com.example.restservice.user.model.User;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController // @ResponseBody + @RequestController
@@ -27,15 +30,22 @@ public class UserController {
     /**
      * 유저 생성 API
      * [POST] /users
-     * @return User
+     * @return ResponseEntity
      * */
     @PostMapping("") // (POST) localhost:8080/users
     // json을 User 객체로 변환해줄 수 있는 것 이 필요하기 때문에 @RequestBody를 써야한다.
-    public User createUser(@RequestBody User user) {
-        return service.save(user);
+    public ResponseEntity createUser(@RequestBody User user) {
+        User savedUser = service.save(user);
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(savedUser.getId()) // 이 조회한 id가 path의 id로 들어간다.
+                .toUri();
+
+        return ResponseEntity.created(location).build();
     }
 
-    /**
+    /**```````````````````````````````````````````````````````````````````````````````````````
      * 유저 조회 API
      * [GET] /users/:id
      * @return User
