@@ -7,8 +7,8 @@ import java.util.List;
 
 @Mapper
 public interface PostMapper {
-    public List<Post> findAllPosts(int id);
+    public List<Post> findAllPosts(int userId);
 
-    public void createPost(Post post, int id);
+    public void createPost(Post post);
 
 }
