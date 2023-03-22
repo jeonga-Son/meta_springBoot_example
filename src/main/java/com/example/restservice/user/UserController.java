@@ -37,46 +37,46 @@ public class UserController {
      * [POST] /users
      * @return ResponseEntity
      * */
-    @PostMapping("") // (POST) localhost:8080/users
-    // json을 User 객체로 변환해줄 수 있는 것 이 필요하기 때문에 @RequestBody를 써야한다.
-    public ResponseEntity createUser(@Valid @RequestBody User user) { // @Valid 유효성 검사 이루어진다.
-        User savedUser = service.save(user);
-
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(savedUser.getId()) // 이 조회한 id가 path의 id로 들어간다.
-                .toUri();
-
-        return ResponseEntity.created(location).build();
-    }
-
-    /**
-     * 유저 조회 API
-     * [GET] /users/:id
-     * @return EntityModel<User>
-     * */
-    @GetMapping("/{id}")  // (GET) localhost:8080/users/:id
-    public EntityModel<User> retrieveOneUser(@PathVariable int id) {
-        User user = service.findOne(id);
-
-        if(user == null) {
-            throw new UserNotFoundException(String.format("ID[%s] not found", id));
-        }
-
-        return EntityModel.of(user,
-                linkTo(methodOn(UserController.class).retrieveAllUsers()).withRel("all-users"));
-    }
-
-    /**
-     * 유저 삭제 API
-     * [DELETE] /users/:id
-     * */
-    @DeleteMapping("/{id}")  // (DELETE) localhost:8080/users/:id
-    public void deleteUser(@PathVariable int id) {
-        User user = service.deleteById(id);
-
-        if(user == null) {
-            throw new UserNotFoundException(String.format("ID[%s] not found", id));
-        }
-    }
+//    @PostMapping("") // (POST) localhost:8080/users
+//    // json을 User 객체로 변환해줄 수 있는 것 이 필요하기 때문에 @RequestBody를 써야한다.
+//    public ResponseEntity createUser(@Valid @RequestBody User user) { // @Valid 유효성 검사 이루어진다.
+//        User savedUser = service.save(user);
+//
+//        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+//                .path("/{id}")
+//                .buildAndExpand(savedUser.getId()) // 이 조회한 id가 path의 id로 들어간다.
+//                .toUri();
+//
+//        return ResponseEntity.created(location).build();
+//    }
+//
+//    /**
+//     * 유저 조회 API
+//     * [GET] /users/:id
+//     * @return EntityModel<User>
+//     * */
+//    @GetMapping("/{id}")  // (GET) localhost:8080/users/:id
+//    public EntityModel<User> retrieveOneUser(@PathVariable int id) {
+//        User user = service.findOne(id);
+//
+//        if(user == null) {
+//            throw new UserNotFoundException(String.format("ID[%s] not found", id));
+//        }
+//
+//        return EntityModel.of(user,
+//                linkTo(methodOn(UserController.class).retrieveAllUsers()).withRel("all-users"));
+//    }
+//
+//    /**
+//     * 유저 삭제 API
+//     * [DELETE] /users/:id
+//     * */
+//    @DeleteMapping("/{id}")  // (DELETE) localhost:8080/users/:id
+//    public void deleteUser(@PathVariable int id) {
+//        User user = service.deleteById(id);
+//
+//        if(user == null) {
+//            throw new UserNotFoundException(String.format("ID[%s] not found", id));
+//        }
+//    }
 }

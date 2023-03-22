@@ -1,0 +1,16 @@
+create table users (
+    id number NOT NULL,
+    name varchar2(50),
+    joindate date,
+    password varchar2(50),
+    ssn varchar2(50)
+);
+
+create sequence user_seq;
+
+insert into users values(1, 'seo', '23/03/09', '1234', '701234-123456');
+insert into users values(1, 'seo22', '23/03/09', '1234', '701234-123456');
+
+commit;
+
+select * from users;

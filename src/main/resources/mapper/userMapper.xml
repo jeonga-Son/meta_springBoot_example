@@ -5,6 +5,10 @@
 
 <mapper namespace="com.example.restservice.user.UserMapper">
 
+    <!--모든 유저 조회-->
+    <select id="findAllUsers" resultType="User">
+        select * from users
+    </select>
     
 </mapper>
 
