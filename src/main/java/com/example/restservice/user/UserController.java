@@ -53,7 +53,7 @@ public class UserController {
     /**
      * 유저 조회 API
      * [GET] /users/:id
-     * @return User
+     * @return EntityModel<User>
      * */
     @GetMapping("/{id}")  // (GET) localhost:8080/users/:id
     public EntityModel<User> retrieveOneUser(@PathVariable int id) {
@@ -69,7 +69,7 @@ public class UserController {
 
     /**
      * 유저 삭제 API
-     * [GET] /users/:id
+     * [DELETE] /users/:id
      * */
     @DeleteMapping("/{id}")  // (DELETE) localhost:8080/users/:id
     public void deleteUser(@PathVariable int id) {
