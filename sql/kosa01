@@ -1,3 +1,5 @@
+## users 테이블 생성
+
 create table users (
     id number NOT NULL,
     name varchar2(50),
@@ -9,8 +11,24 @@ create table users (
 create sequence user_seq;
 
 insert into users values(1, 'seo', '23/03/09', '1234', '701234-123456');
-insert into users values(1, 'seo22', '23/03/09', '1234', '701234-123456');
+insert into users values(2, 'seo22', '23/03/09', '1234', '701234-123456');
 
 commit;
 
 select * from users;
+
+## posts 테이블 생성
+
+create table posts (
+    id number NOT NULL,
+    description varchar2(255),
+    user_id number NOT NULL
+);
+drop table posts;
+
+create sequence post_seq;
+drop sequence post_seq;
+
+commit;
+
+select * from posts;

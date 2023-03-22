@@ -29,6 +29,24 @@ public class UserService {
         return userMapper.findAllUsers();
     }
 
+    public User save(User user) {
+        userMapper.createUser(user);
+
+        return user;
+    }
+
+    public User findOne(int id) {
+        return userMapper.findUser(id);
+    }
+
+    public User deleteById(int id) {
+        User user = userMapper.findUser(id);
+
+        userMapper.deleteUser(id);
+
+        return user;
+    }
+
     // Integer <-> int 와 boxing과 unboxing이 자유롭게 이루어진다.
     // Double과 Long도 같은 맥락이다.
 //    public User findOne(int id) {

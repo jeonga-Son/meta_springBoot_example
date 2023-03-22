@@ -9,6 +9,22 @@
     <select id="findAllUsers" resultType="User">
         select * from users
     </select>
+
+    <!--유저 생성-->
+    <insert id="createUser">
+        insert into users (id, name, joinDate, password, ssn)
+        values(user_seq.nextval, #{name}, #{joinDate}, #{password}, #{ssn})
+    </insert>
+
+    <!--유저 조회-->
+    <select id="findUser" resultType="User">
+        select * from users where id = #{id}
+    </select>
+
+    <!--유저 삭제-->
+    <delete id="deleteUser">
+        delete from users where id = #{id}
+    </delete>
     
 </mapper>
 
