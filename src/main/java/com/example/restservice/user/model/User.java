@@ -1,5 +1,6 @@
 package com.example.restservice.user.model;
 
+import com.example.restservice.post.model.Post;
 import com.fasterxml.jackson.annotation.JsonFilter;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,8 +9,10 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -28,4 +31,7 @@ public class User {
     //@JsonIgnore // 데이터 값은 담겼지만 노출은 제한한다.
     private String password;
     private String ssn; // 주민등록번호
+
+    @OneToMany(mappedBy = "user") // user 입장에서는 one이다.
+    private List<Post> posts; // post는 여러개이다.
 }
