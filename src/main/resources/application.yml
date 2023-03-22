@@ -21,3 +21,11 @@ spring:
 
   jpa:
     show-sql: true
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        use_sql: true
+        format_sql: true
+    defer-datasource-initialization: true
