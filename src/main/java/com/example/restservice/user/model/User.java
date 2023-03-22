@@ -34,4 +34,12 @@ public class User {
 
     @OneToMany(mappedBy = "user") // user 입장에서는 one이다.
     private List<Post> posts; // post는 여러개이다.
+
+    public User(Integer id, String name, Date joinDate, String password, String ssn) {
+        this.id = id;
+        this.name = name;
+        this.joinDate = joinDate;
+        this.password = password;
+        this.ssn = ssn;
+    }
 }
