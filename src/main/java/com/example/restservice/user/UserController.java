@@ -79,34 +79,4 @@ public class UserController {
             throw new UserNotFoundException(String.format("ID[%s] not found", id));
         }
     }
-
-    /**
-     * 유저 게시글 조회 API
-     * [GET] /users/:id
-     * @return User
-     * */
-//    @GetMapping("/{id}/posts")  // (GET) localhost:8080/users/:id/posts
-//    public String retrieveAllPostsForUser() {
-//        return "show User Posts";
-//    }
-
-    /**
-     * 유저 게시글 생성 API
-     * [POST] /users/:id/posts
-     * @return User
-     * */
-//    @Post("/{id}/posts")  // (POST) localhost:8080/users/:id/posts
-//    public String createPostsForUser() {
-//        return "create User Posts";
-//    }
-
-    /**
-     * 유저가 게시글 상세 조회 API
-     * [GET] /users/:id/posts/:post_id
-     * @return User
-     * */
-//    @GetMapping("{id}/posts/{post_id}")  // (GET) localhost:8080/users/:id/posts/:post_id"
-//    public String retrieveDetailsUser() {
-//
-//    }
 }

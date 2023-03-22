@@ -1,5 +1,7 @@
 package com.example.restservice.user;
 
+import com.example.restservice.post.PostRepository;
+import com.example.restservice.post.model.Post;
 import com.example.restservice.user.model.User;
 import io.swagger.models.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class UserJpaController {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PostRepository postRepository;
 
     /**
      * 모든 유저 조회 API
@@ -71,7 +76,7 @@ public class UserJpaController {
         User savedUser = userRepository.save(user);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("{id}")
+                .path("/{id}")
                 .buildAndExpand(savedUser.getId())
                 .toUri();
 
@@ -86,4 +91,54 @@ public class UserJpaController {
     public void deleteUser(@PathVariable int id) {
         userRepository.deleteById(id);
     }
+
+    /**
+     * 유저 게시글 조회 API
+     * [GET] /jpa/users/:id/posts
+     * @return List<Post>
+     * */
+    @GetMapping("/{id}/posts")  // (GET) localhost:8080/jpa/users/:id/posts
+    public List<Post> retrieveAllPostsForUser(@PathVariable int id) { //@PathVariable param값이 하나면 그냥 int id 바로 써도 된다.
+        Optional<User> user = userRepository.findById(id);
+
+        if(!user.isPresent()) {
+            throw new UserNotFoundException(String.format("ID[%s] not found", id));
+        }
+
+        return user.get().getPosts();
+    }
+
+    /**
+     * 유저 게시글 생성 API
+     * [POST] /jpa/users/:id/posts
+     * @return User
+     * */
+    @PostMapping("/{id}/posts")  // (POST) localhost:8080/jpa/users/:id/posts
+    public ResponseEntity<Post> createPostsForUser(@PathVariable int id, @RequestBody Post post) {
+        Optional<User> user = userRepository.findById(id);
+
+        if(!user.isPresent()) {
+            throw new UserNotFoundException(String.format("ID[%s] not found", id));
+        }
+
+        post.setUser(user.get());
+        Post savedPost = postRepository.save(post);
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(savedPost.getId())
+                .toUri();
+
+        return ResponseEntity.created(location).build();
+    }
+
+    /**
+     * 유저 게시글 상세 조회 API
+     * [GET] /users/:id/posts/:post_id
+     * @return User
+     * */
+//    @GetMapping("{id}/posts/{post_id}")  // (GET) localhost:8080/jpa/users/:id/posts/:post_id"
+//    public Post retrieveDetailsUser(@PathVariable("id") int id, @PathVariable("post_id") int post_id) {
+//
+//    }
 }
