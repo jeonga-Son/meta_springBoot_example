@@ -11,35 +11,20 @@
             left join users on users.id = posts.user_id where posts.user_id = #{posts.user_id}
         </select>
 
-    <resultMap id="postMap" type="com.example.restservice.post.model.Post">
-        <result property="id" column="id"></result>
-        <result property="description" column="description"></result>
-        <association property="user_id" column="usr_id" javaType="int" resultMap="userMap"></association>
-    </resultMap>
+        <resultMap id="postMap" type="com.example.restservice.post.model.Post">
+            <result property="id" column="id"></result>
+            <result property="description" column="description"></result>
+            <association property="user_id" column="usr_id" javaType="java.lang.Integer"></association>
+        </resultMap>
 
-    <resultMap id="userMap" type="com.example.restservice.user.model.User">
-        <result property="id" column="id"></result>
-        <result property="name" column="name"></result>
-        <result property="joinDate" column="joinDate"></result>
-        <result property="password" column="password"></result>
-        <result property="ssn" column="ssn"></result>
-        <collection property="posts" resultMap="postMap"></collection>
-    </resultMap>
-
-<!--        <resultMap id="postMap" type="com.example.restservice.post.model.Post">-->
-<!--            <result property="id" column="id"></result>-->
-<!--            <result property="description" column="description"></result>-->
-<!--            <association property="user_id" javaType="int" resultMap="userMap"></association>-->
-<!--        </resultMap>-->
-
-<!--        <resultMap id="userMap" type="com.example.restservice.user.model.User">-->
-<!--            <result property="id" column="id"></result>-->
-<!--            <result property="name" column="name"></result>-->
-<!--            <result property="joinDate" column="joinDate"></result>-->
-<!--            <result property="password" column="password"></result>-->
-<!--            <result property="ssn" column="ssn"></result>-->
-<!--            <collection property="posts" resultMap="postMap"></collection>-->
-<!--        </resultMap>-->
+        <resultMap id="userMap" type="com.example.restservice.user.model.User">
+            <result property="id" column="id"></result>
+            <result property="name" column="name"></result>
+            <result property="joinDate" column="joinDate"></result>
+            <result property="password" column="password"></result>
+            <result property="ssn" column="ssn"></result>
+            <collection property="posts" resultMap="postMap"></collection>
+        </resultMap>
 
         <!--유저 게시글 생성-->
         <insert id="createPost">

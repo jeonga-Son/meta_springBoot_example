@@ -106,15 +106,12 @@ public class UserJpaController {
     @GetMapping("/{id}/posts")  // (GET) localhost:8080/jpa/users/:id/posts
     public List<Post> retrieveAllPostsForUser(@PathVariable int id) { //@PathVariable param값이 하나면 그냥 int id 바로 써도 된다.
         User user = userService.findOne(id);
-        System.out.println("찾은유저: " + user);
 
         if(user.equals(null)) {
             throw new UserNotFoundException(String.format("ID[%s] not found", id));
         }
-        System.out.println("유저아이디!!!!!!!!!!! : " + user.getId());
 
         List<Post> posts = postService.findAllPosts(id);
-            System.out.println("posts~!!!!!!!!: " + posts);
 
         return posts;
     }
@@ -135,10 +132,8 @@ public class UserJpaController {
 
 //        post.setUser(user.get());
 //        Post savedPost = postRepository.save(post);
-        System.out.println("0000. getPost!!!!!!!!!!!!! : " + id);
 
         Post getPost = postService.save(post, id);
-        System.out.println("1. getPost!!!!!!!!!!!!! : " + getPost);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
