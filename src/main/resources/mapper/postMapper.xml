@@ -5,10 +5,10 @@
 
 <mapper namespace="com.example.restservice.post.PostMapper">
 
-    <!--유저 게시글 조회-->
-    <select id="findAllPosts" resultType="Post">
-        select * from posts where user_id = #{user_id}
-    </select>
+<!--    &lt;!&ndash;유저 게시글 조회&ndash;&gt;-->
+<!--    <select id="findAllPosts" resultType="Post">-->
+<!--        select * from posts where user_id = #{user_id}-->
+<!--    </select>-->
 
 
 
