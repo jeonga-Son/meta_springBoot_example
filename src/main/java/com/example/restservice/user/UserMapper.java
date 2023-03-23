@@ -1,6 +1,6 @@
 package com.example.restservice.user;
 
-import com.example.restservice.user.model.User;
+import com.example.restservice.user.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

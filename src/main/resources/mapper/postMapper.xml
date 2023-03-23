@@ -11,13 +11,13 @@
             left join users on users.id = posts.user_id where posts.user_id = #{posts.user_id}
         </select>
 
-        <resultMap id="postMap" type="com.example.restservice.post.model.Post">
+        <resultMap id="postMap" type="com.example.restservice.post.entity.Post">
             <result property="id" column="id"></result>
             <result property="description" column="description"></result>
-            <association property="user_id" column="usr_id" javaType="java.lang.Integer"></association>
+            <result property="user_id" column="user_id"></result>
         </resultMap>
 
-        <resultMap id="userMap" type="com.example.restservice.user.model.User">
+        <resultMap id="userMap" type="com.example.restservice.user.entity.User">
             <result property="id" column="id"></result>
             <result property="name" column="name"></result>
             <result property="joinDate" column="joinDate"></result>

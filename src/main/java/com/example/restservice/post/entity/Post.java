@@ -1,12 +1,8 @@
-package com.example.restservice.post.model;
+package com.example.restservice.post.entity;
 
-import com.example.restservice.user.model.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
 
 //@Entity
 @Data

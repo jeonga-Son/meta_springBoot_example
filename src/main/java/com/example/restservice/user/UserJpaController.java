@@ -1,19 +1,16 @@
 package com.example.restservice.user;
 
 import com.example.restservice.post.PostService;
-import com.example.restservice.post.model.Post;
-import com.example.restservice.user.model.User;
-import io.swagger.models.Response;
+import com.example.restservice.post.entity.Post;
+import com.example.restservice.user.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.swing.text.html.Option;
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;

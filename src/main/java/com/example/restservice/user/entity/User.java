@@ -1,15 +1,10 @@
-package com.example.restservice.user.model;
+package com.example.restservice.user.entity;
 
-import com.example.restservice.post.model.Post;
-import com.fasterxml.jackson.annotation.JsonFilter;
+import com.example.restservice.post.entity.Post;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;

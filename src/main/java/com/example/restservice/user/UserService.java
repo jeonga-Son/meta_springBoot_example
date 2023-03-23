@@ -1,12 +1,9 @@
 package com.example.restservice.user;
 
-import com.example.restservice.user.model.User;
+import com.example.restservice.user.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 @Service

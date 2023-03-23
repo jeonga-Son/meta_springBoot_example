@@ -1,6 +1,6 @@
 package com.example.restservice.user;
 
-import com.example.restservice.user.model.User;
+import com.example.restservice.user.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
